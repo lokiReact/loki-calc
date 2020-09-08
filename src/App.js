@@ -1,9 +1,13 @@
 import React from 'react';
+import Layout from './hoc/Layout/Layout';
+import Calculator from './containers/Calculator/Calculator';
 
 function App() {
   return (
     <div className="App">
-      Hello
+      <Layout>
+        <Calculator/>
+      </Layout>
     </div>
   );
 }
