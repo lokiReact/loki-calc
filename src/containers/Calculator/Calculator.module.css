@@ -1,3 +1,8 @@
 .Calculator{
-    background-color: orangered;
+    max-width: 120rem;
+    margin: 10rem auto;
+    background-color: var(--color-black-dark);
+    box-shadow: var(--box-shadow);
+    border-radius: 3px;
+    height: 50rem;
 }
