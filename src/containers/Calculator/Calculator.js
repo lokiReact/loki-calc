@@ -12,75 +12,75 @@ class Calculator extends Component {
                 <div className={classes.ButtonPanel}>
                     <div className={classes.ScientificPanel}>
                         <div className={classes.BtnRow}>
-                            <Button>(</Button>
-                            <Button>)</Button>
-                            <Button>mc</Button>
-                            <Button>m+</Button>
-                            <Button>m-</Button>
-                            <Button>mr</Button>
+                            <Button disabled>(</Button>
+                            <Button disabled>)</Button>
+                            <Button disabled>mc</Button>
+                            <Button disabled>m+</Button>
+                            <Button disabled>m-</Button>
+                            <Button disabled>mr</Button>
                         </div>
                         <div className={classes.BtnRow}>
-                            <Button>2<sup>nd</sup></Button>
-                            <Button>x<sup>2</sup></Button>
-                            <Button>x<sup>3</sup></Button>
-                            <Button>x<sup>y</sup></Button>
-                            <Button>e<sup>x</sup></Button>
-                            <Button>10<sup>x</sup></Button>
+                            <Button disabled>2<sup>nd</sup></Button>
+                            <Button disabled>x<sup>2</sup></Button>
+                            <Button disabled>x<sup>3</sup></Button>
+                            <Button disabled>x<sup>y</sup></Button>
+                            <Button disabled>e<sup>x</sup></Button>
+                            <Button disabled>10<sup>x</sup></Button>
                         </div>
                         <div className={classes.BtnRow}>
-                            <Button>1/x</Button>
-                            <Button><sup>2</sup>&#8730;x</Button>
-                            <Button><sup>3</sup>&#8730;x</Button>
-                            <Button><sup>y</sup>&#8730;x</Button>
-                            <Button>ln</Button>
-                            <Button>log<sub>10</sub></Button>
+                            <Button disabled>1/x</Button>
+                            <Button disabled><sup>2</sup>&#8730;x</Button>
+                            <Button disabled><sup>3</sup>&#8730;x</Button>
+                            <Button disabled><sup>y</sup>&#8730;x</Button>
+                            <Button disabled>ln</Button>
+                            <Button disabled>log<sub>10</sub></Button>
                         </div>
                         <div className={classes.BtnRow}>
-                            <Button>x!</Button>
-                            <Button>sin</Button>
-                            <Button>cos</Button>
-                            <Button>tan</Button>
-                            <Button>e</Button>
-                            <Button>EE</Button>
+                            <Button disabled>x!</Button>
+                            <Button disabled>sin</Button>
+                            <Button disabled>cos</Button>
+                            <Button disabled>tan</Button>
+                            <Button disabled>e</Button>
+                            <Button disabled>EE</Button>
                         </div>
                         <div className={classes.BtnRow}>
-                            <Button>Rad</Button>
-                            <Button>sinh</Button>
-                            <Button>cosh</Button>
-                            <Button>tanh</Button>
-                            <Button>&#960;</Button>
-                            <Button>Rand</Button>
+                            <Button disabled>Rad</Button>
+                            <Button disabled>sinh</Button>
+                            <Button disabled>cosh</Button>
+                            <Button disabled>tanh</Button>
+                            <Button disabled>&#960;</Button>
+                            <Button disabled>Rand</Button>
                         </div>
                     </div>
                     <div className={classes.DigitalPanel}>
                         <div className={classes.BtnRow}>
-                            <Button>C</Button>
-                            <Button>+/-</Button>
-                            <Button>%</Button>
-                            <Button>÷</Button>
+                            <Button color='light'>C</Button>
+                            <Button color='light'>+/-</Button>
+                            <Button color='light'>%</Button>
+                            <Button color='yellow'>&#247;</Button>
                         </div>
                         <div className={classes.BtnRow}>
                             <Button>7</Button>
                             <Button>8</Button>
                             <Button>9</Button>
-                            <Button>x</Button>
+                            <Button color='yellow'>&#215;</Button>
                         </div>
                         <div className={classes.BtnRow}>
                             <Button>4</Button>
                             <Button>5</Button>
                             <Button>6</Button>
-                            <Button>-</Button>
+                            <Button color='yellow'>&#8722;</Button>
                         </div>
                         <div className={classes.BtnRow}>
                             <Button>1</Button>
                             <Button>2</Button>
                             <Button>3</Button>
-                            <Button>+</Button>
+                            <Button color='yellow'>+</Button>
                         </div>
                         <div className={classes.BtnRow}>
-                            <Button>0</Button>
+                            <Button size='big'>0</Button>
                             <Button>.</Button>
-                            <Button>=</Button>
+                            <Button color='yellow'>=</Button>
                         </div>
                     </div>
                 </div>
