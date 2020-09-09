@@ -13,7 +13,7 @@ class Calculator extends Component {
         lastClickIsOperator: false
     }
 
-    clearInput = value => {
+    clearInputHandler = value => {
         this.setState({
             input: '',
             history: '',
@@ -21,20 +21,18 @@ class Calculator extends Component {
             previousNumber: '',
             lastClickIsOperator: false
         });
-        console.log(this.state);
     }
 
-    addInput = value => {
+    inputHandler = value => {
         this.setState({
             ...this.state,
             input: this.state.input + value,
             history: this.state.history + value,
             lastClickIsOperator: false
         });
-        console.log(this.state);
     }    
 
-    changeState = value => {
+    changeStateHandler = value => {
         if (this.state.input){
             this.setState({
                 ...this.state,
@@ -43,22 +41,20 @@ class Calculator extends Component {
                 lastClickIsOperator: false
             })
         }
-        console.log(this.state);
     }
 
-    calculatePercentage = value => {
+    calculatePercentageHandler = value => {
         if (this.state.input){
             this.setState({
                 ...this.state,
-                input: (parseFloat(this.state.input)/100).toString(),
+                input: (parseFloat(this.state.input)/100).toFixed(6).toString(),
                 history: this.state.history + "/100",
                 lastClickIsOperator: false
             })
         }
-        console.log(this.state);
     } 
 
-    addZero = value => {
+    zeroHandler = value => {
         if (this.state.input){
             this.setState({
                 ...this.state,
@@ -67,10 +63,9 @@ class Calculator extends Component {
                 lastClickIsOperator: false
             })
         }
-        console.log(this.state);
     }
 
-    addDecimal = value => {
+    decimalHandler = value => {
         if(this.state.input.indexOf(".") === -1){
             this.setState({
                 ...this.state,
@@ -79,17 +74,10 @@ class Calculator extends Component {
                 lastClickIsOperator: false
             })
         }
-        console.log(this.state);
     }
 
-    addOperator = value => {
-        // let historyValue = this.state.history + value;
-        // if(this.state.input && this.state.lastClickIsOperator){
-        //     historyValue = this.state.history.slice(0, -1) + value;  
-        // }
-
+    operatorHandler = value => {
         if(this.state.input){
-
             if (this.state.previousNumber){
                 this.setState({
                     ...this.state,
@@ -112,21 +100,32 @@ class Calculator extends Component {
         }
     }
 
+    eaualToHandler = value => {
+        if(this.state.input && this.state.previousNumber && this.state.operator){
+            this.setState({
+                ...this.state,
+                input: this.evaluate(),
+                operator: '',
+                previousNumber: '',
+                lastClickIsOperator: false
+            })
+        }
+    }    
+
     evaluate(){
-        console.log(this.state.operator);
         switch(this.state.operator){
             case "+":
-                return (parseFloat(this.state.input) + parseFloat(this.state.previousNumber)).toString();
+                return (parseFloat(this.state.input) + parseFloat(this.state.previousNumber)).toFixed(4).toString();
             case "−":
-                return (parseFloat(this.state.previousNumber) - parseFloat(this.state.input)).toString();    
+                return (parseFloat(this.state.previousNumber) - parseFloat(this.state.input)).toFixed(4).toString();    
             case "×": 
-                return (parseFloat(this.state.input) * parseFloat(this.state.previousNumber)).toString();
+                return (parseFloat(this.state.input) * parseFloat(this.state.previousNumber)).toFixed(4).toString();
             case "÷":
                 if(this.state.input === "0"){
                     alert("Divide by 0 error");
                       return "0";
                 } else {
-                    return (parseFloat(this.state.previousNumber).div(this.state.input)).toString();
+                    return (parseFloat(this.state.previousNumber).div(this.state.input)).toFixed(4).toString();
                 }
             default: 
                 return 0;
@@ -183,33 +182,33 @@ class Calculator extends Component {
                     </div>
                     <div className={classes.DigitalPanel}>
                         <div className={classes.BtnRow}>
-                            <Button clicked={this.clearInput} color='light'>C</Button>
-                            <Button clicked={this.changeState} color='light'>+/-</Button>
-                            <Button clicked={this.calculatePercentage} color='light'>%</Button>
-                            <Button clicked={this.addOperator} color='yellow'>&#247;</Button>
+                            <Button clicked={this.clearInputHandler} color='light'>C</Button>
+                            <Button clicked={this.changeStateHandler} disabled={this.state.lastClickIsOperator} color='light'>+/-</Button>
+                            <Button clicked={this.calculatePercentageHandler} disabled={this.state.lastClickIsOperator} color='light'>%</Button>
+                            <Button clicked={this.operatorHandler} disabled={this.state.lastClickIsOperator} color='yellow'>&#247;</Button>
                         </div>
                         <div className={classes.BtnRow}>
-                            <Button clicked={this.addInput}>7</Button>
-                            <Button clicked={this.addInput}>8</Button>
-                            <Button clicked={this.addInput}>9</Button>
-                            <Button clicked={this.addOperator} color='yellow'>&#215;</Button>
+                            <Button clicked={this.inputHandler}>7</Button>
+                            <Button clicked={this.inputHandler}>8</Button>
+                            <Button clicked={this.inputHandler}>9</Button>
+                            <Button clicked={this.operatorHandler} disabled={this.state.lastClickIsOperator} color='yellow'>&#215;</Button>
                         </div>
                         <div className={classes.BtnRow}>
-                            <Button clicked={this.addInput}>4</Button>
-                            <Button clicked={this.addInput}>5</Button>
-                            <Button clicked={this.addInput}>6</Button>
-                            <Button clicked={this.addOperator} color='yellow'>&#8722;</Button>
+                            <Button clicked={this.inputHandler}>4</Button>
+                            <Button clicked={this.inputHandler}>5</Button>
+                            <Button clicked={this.inputHandler}>6</Button>
+                            <Button clicked={this.operatorHandler} disabled={this.state.lastClickIsOperator} color='yellow'>&#8722;</Button>
                         </div>
                         <div className={classes.BtnRow}>
-                            <Button clicked={this.addInput}>1</Button>
-                            <Button clicked={this.addInput}>2</Button>
-                            <Button clicked={this.addInput}>3</Button>
-                            <Button clicked={this.addOperator} color='yellow'>+</Button>
+                            <Button clicked={this.inputHandler}>1</Button>
+                            <Button clicked={this.inputHandler}>2</Button>
+                            <Button clicked={this.inputHandler}>3</Button>
+                            <Button clicked={this.operatorHandler} disabled={this.state.lastClickIsOperator} color='yellow'>+</Button>
                         </div>
                         <div className={classes.BtnRow}>
-                            <Button clicked={this.addZero} size='big'>0</Button>
-                            <Button clicked={this.addDecimal}>.</Button>
-                            <Button  color='yellow'>=</Button>
+                            <Button clicked={this.zeroHandler} size='big'>0</Button>
+                            <Button clicked={this.decimalHandler}>.</Button>
+                            <Button clicked={this.eaualToHandler} color='yellow' disabled={this.state.lastClickIsOperator}>=</Button>
                         </div>
                     </div>
                 </div>

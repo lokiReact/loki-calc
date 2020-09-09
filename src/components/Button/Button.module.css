@@ -32,8 +32,6 @@
     cursor: not-allowed;
 }
 
-
-
 .Button:focus{
     outline: none;
 }
@@ -42,7 +40,15 @@
     background-color: var(--color-yellow);
 }
 
+.Yellow:disabled{
+    background-color: var(--color-yellow-light);
+}
+
 .Light{
     background-color: var(--color-grey-light);
     color: var(--color-black-dark);
+}
+
+.Light:disabled{
+    background-color: var(--color-white);
 }
