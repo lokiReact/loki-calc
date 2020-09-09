@@ -6,9 +6,48 @@
     min-height: 90vh;   
     display: flex;
 }
+@media only screen and (max-width: 75em){
+    .Layout{
+        margin: 0;
+        max-width: 100%;
+        height: 100vh;  
+    }
+}
+@media only screen and (max-width: 56.25em){
+    .Layout{
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 50em){
+    .Layout{
+        width: 50%;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (max-width: 40.625em){
+    .Layout{
+        width: 70%;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (max-width: 31.25em){
+    .Layout{
+        width: 100%;
+        margin: 0 auto;
+    }
+}
 
 .Nav{
     flex: 0 0 15%;
+}
+@media only screen and (max-width: 56.25em){
+    .Nav{
+        flex: 0;
+        max-height: 10vh;
+    }
 }
 
 .Content{
