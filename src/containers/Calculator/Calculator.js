@@ -3,20 +3,22 @@ import classes from './Calculator.module.css';
 import Aux from '../../hoc/Aux/Aux';
 import Display from '../../components/Display/Display';
 import Button from '../../components/Button/Button';
+import axios from 'axios';
 
 class Calculator extends Component {
     state={
         input: "",
         previousNumber: "",
         operator: "",
-        history: "",
+        history: [],
         lastClickIsOperator: false
     }
+
 
     clearInputHandler = value => {
         this.setState({
             input: '',
-            history: '',
+            history: [],
             operator: '',
             previousNumber: '',
             lastClickIsOperator: false
@@ -27,7 +29,6 @@ class Calculator extends Component {
         this.setState({
             ...this.state,
             input: this.state.input + value,
-            history: this.state.history + value,
             lastClickIsOperator: false
         });
     }    
@@ -37,7 +38,7 @@ class Calculator extends Component {
             this.setState({
                 ...this.state,
                 input: (-1 * parseFloat(this.state.input)).toString(),
-                history: this.state.history + "*(-1)",
+                history: this.state.history.concat(this.state.input).concat(value),
                 lastClickIsOperator: false
             })
         }
@@ -48,7 +49,7 @@ class Calculator extends Component {
             this.setState({
                 ...this.state,
                 input: (parseFloat(this.state.input)/100).toFixed(6).toString(),
-                history: this.state.history + "/100",
+                history: this.state.history.concat(this.state.input).concat(value),
                 lastClickIsOperator: false
             })
         }
@@ -59,7 +60,6 @@ class Calculator extends Component {
             this.setState({
                 ...this.state,
                 input: this.state.input + value,
-                history: this.state.history + value,
                 lastClickIsOperator: false
             })
         }
@@ -70,7 +70,6 @@ class Calculator extends Component {
             this.setState({
                 ...this.state,
                 input: this.state.input + value,
-                history: this.state.history + value,
                 lastClickIsOperator: false
             })
         }
@@ -84,7 +83,8 @@ class Calculator extends Component {
                     operator: value,
                     input: '',
                     previousNumber: this.evaluate(),
-                    lastClickIsOperator: true
+                    lastClickIsOperator: true,
+                    history: this.state.history.concat(this.state.input).concat(value),
                 })
 
             }else{
@@ -93,7 +93,8 @@ class Calculator extends Component {
                     operator: value,
                     input: '',
                     previousNumber: this.state.input,
-                    lastClickIsOperator: true
+                    lastClickIsOperator: true,
+                    history: this.state.history.concat(this.state.input).concat(value),
                 })                
 
             }
@@ -102,12 +103,21 @@ class Calculator extends Component {
 
     eaualToHandler = value => {
         if(this.state.input && this.state.previousNumber && this.state.operator){
-            this.setState({
-                ...this.state,
-                input: this.evaluate(),
-                operator: '',
-                previousNumber: '',
-                lastClickIsOperator: false
+            const result = this.evaluate();
+            const data = {
+                history: this.state.history.concat(this.state.input).concat("=").join(" "),
+                result: result,
+                curTime: new Date()
+            }
+            axios.post("https://loki-calc.firebaseio.com/results.json", data).then(response => {
+                this.setState({
+                    ...this.state,
+                    input: result,
+                    operator: '',
+                    previousNumber: '',
+                    lastClickIsOperator: false,
+                    history: []
+                })
             })
         }
     }    
@@ -125,7 +135,7 @@ class Calculator extends Component {
                     alert("Divide by 0 error");
                       return "0";
                 } else {
-                    return (parseFloat(this.state.previousNumber).div(this.state.input)).toFixed(4).toString();
+                    return (parseFloat(this.state.previousNumber)/parseFloat(this.state.input)).toFixed(4).toString();
                 }
             default: 
                 return 0;

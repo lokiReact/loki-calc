@@ -1,0 +1,22 @@
+.Record{
+    flex: 0 0 30%;
+    color: var(--color-black-dark);
+    min-height: 10rem;
+    background-color: var(--color-white);
+    border-radius: 3px;
+    box-shadow: var(--box-shadow);
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 1rem 2rem;
+    margin-bottom: 3rem;
+}
+
+.Expression{
+    font-size: 1.2rem;
+}
+
+.Output{
+    font-size: 2rem;
+}
