@@ -1,0 +1,58 @@
+.NavigationItem{
+    position: relative;
+    display: block;
+    cursor: pointer;
+}
+
+.NavigationItem:not(:last-child){
+    margin-bottom: 0.5rem;
+}
+
+.NavigationItem a{
+    color: inherit;
+    text-decoration: none;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+}
+
+.NavigationItem::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    z-index: 1;
+    background-color: var(--color-yellow-light);
+    transform: scaleY(0);
+    transition: transform .2s, width .4s cubic-bezier(1, 0, 0, 1) .2s;
+}
+
+.NavigationItem a:active,
+.NavigationItem a.active{
+    background-color: var(--color-yellow-light);
+}
+
+.NavigationItem:hover::before{
+    transform: scaleY(1);
+    width: 100%;
+}
+
+.NavigationItem:active::before{
+    background-color: var(--color-yellow-light);
+}
+
+
+
+
+.NavigationItem a:link,
+.NavigationItem a:visited{
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 1.5rem 3rem;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+}
