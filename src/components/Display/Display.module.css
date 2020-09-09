@@ -7,3 +7,24 @@
     align-items: center;
     height: 20%;
 }
+
+.Small{
+    font-size: 6rem;
+}
+
+.Smallest{
+    font-size: 3rem;
+}
+
+@media only screen and (max-width: 50em){
+    .Display{
+        font-size: 8rem;
+    }
+    .Small{
+        font-size: 4rem;
+    }
+    .Smallest{
+        font-size: 2rem;
+    }
+    
+}

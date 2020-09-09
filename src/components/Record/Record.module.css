@@ -10,6 +10,7 @@
     justify-content: space-evenly;
     padding: 1rem 2rem;
     margin: 3rem;
+    overflow: hidden;
 }
 
 .Expression{
@@ -18,4 +19,18 @@
 
 .Output{
     font-size: 2rem;
+}
+
+@media only screen and (max-width: 50em){
+    .Record{
+        padding: 1rem 1.5rem;
+        margin: 2rem;
+    }
+
+    .Expression{
+        font-size: 1rem;
+    }
+    .Output{
+        font-size: 1.6rem;
+    }
 }

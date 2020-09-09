@@ -4,6 +4,7 @@ import Aux from '../../hoc/Aux/Aux';
 import Display from '../../components/Display/Display';
 import Button from '../../components/Button/Button';
 import axios from 'axios';
+import Big from 'big.js';
 
 class Calculator extends Component {
     state={
@@ -48,7 +49,7 @@ class Calculator extends Component {
         if (this.state.input){
             this.setState({
                 ...this.state,
-                input: (parseFloat(this.state.input)/100).toFixed(6).toString(),
+                input: Big(this.state.input).div(Big("100")).toString(),
                 history: this.state.history.concat(this.state.input).concat(value),
                 lastClickIsOperator: false
             })
@@ -125,17 +126,17 @@ class Calculator extends Component {
     evaluate(){
         switch(this.state.operator){
             case "+":
-                return (parseFloat(this.state.input) + parseFloat(this.state.previousNumber)).toFixed(4).toString();
+                return Big(this.state.input).plus(Big(this.state.previousNumber)).toString();
             case "−":
-                return (parseFloat(this.state.previousNumber) - parseFloat(this.state.input)).toFixed(4).toString();    
+                return Big(this.state.previousNumber).minus(Big(this.state.input)).toString();  
             case "×": 
-                return (parseFloat(this.state.input) * parseFloat(this.state.previousNumber)).toFixed(4).toString();
+                return Big(this.state.input).times(Big(this.state.previousNumber)).toString();
             case "÷":
                 if(this.state.input === "0"){
                     alert("Divide by 0 error");
                       return "0";
                 } else {
-                    return (parseFloat(this.state.previousNumber)/parseFloat(this.state.input)).toFixed(4).toString();
+                    return Big(this.state.previousNumber).div(Big(this.state.input)).toString();
                 }
             default: 
                 return 0;
@@ -146,7 +147,7 @@ class Calculator extends Component {
     render() {
         return (
             <Aux>
-                <Display>{this.state.input || this.state.previousNumber || "0"}</Display>
+                <Display size={this.state.input.length || this.state.previousNumber.length}>{this.state.input || this.state.previousNumber || "0"}</Display>
                 <div className={classes.ButtonPanel}>
                     <div className={classes.ScientificPanel}>
                         <div className={classes.BtnRow}>

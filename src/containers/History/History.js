@@ -31,7 +31,7 @@ class History extends Component{
     }
 
     render(){
-        const history = this.state.results.map(res => {
+        const history = this.state.results.reverse().map(res => {
             return (<Record key={res.id} expression={res.history} output={res.result} />)
         })        
         return(
